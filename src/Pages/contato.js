@@ -1,7 +1,19 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import { Grid, Button, TextField } from '@material-ui/core/';
 
 const Contatos = () => {
+    
+    const url = 'http://localhost:5000/message'
+    const [message, setMessage] = useState([]);
+
+    useEffect(async () => {
+        const response = await fetch(url);
+        const data = await response.json();
+        setMessage(data);
+    }, [])
+
+    console.log(message)
+    
     return(
         <>
             <Grid container direction="row" xs={12}>
