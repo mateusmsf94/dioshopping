@@ -21,6 +21,18 @@ const Contatos = () => {
         if(author.length != 0 || content.length != 0) {
             return setValidator(!validator);
         }
+        const bodyForm = {
+            email: author,
+            message: content,
+        }
+
+        fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(bodyForm)
+        })
     }
     
     return(
