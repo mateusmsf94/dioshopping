@@ -5,6 +5,8 @@ const Contatos = () => {
     
     const url = 'http://localhost:5000/message'
     const [message, setMessage] = useState([]);
+    const [author, setAuthor] = useState('');
+    
 
     useEffect(async () => {
         const response = await fetch(url);
@@ -23,13 +25,18 @@ const Contatos = () => {
             <Button className="mt-2" variant="contained" color="primary">
                 Sent
             </Button>
-            <div className="card mt-2">
-                <div className="card-body">
-                    <h5 className="card-title">Author</h5>
-                    <p className="card-text">message content.</p>
-                    <p className="card-text"><small class="text-muted">message date</small></p>
-                </div>                
-            </div>            
+            {message.map((content) => {
+                return(
+                    <div className="card mt-2" key={content.id}>
+                        <div className="card-body">
+                            <h5 className="card-title">{content.email}</h5>
+                            <p className="card-text">{content.message}</p>
+                            <p className="card-text"><small class="text-muted">message date</small></p>
+                        </div>                
+                    </div>            
+
+                )
+            })}
         </>
     )
 }
